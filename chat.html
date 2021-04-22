@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>stranger2stranger</title>
+  </head>
+  <body>
+    <header>
+      <div class="container" >
+        <nav class="navbar navbar-expand-lg navbar-light d-flex">
+          <a class="navbar-brand d-flex justify-content-around justify-content-xl-start justify-content-lg-center justify-content-md-center justify-content-sm-center" href="#">
+            <img src="img/chat-logo.svg" alt="nerds">
+            <h1 class="logo-name">stranger2stranger</h1>
+          </a>
+        </nav>  
+      </div>
+    </header>
+
+    <main> 
+      <div class="container">
+        <section class="row d-flex justify-content-center line">
+          <div class="col-11 col-md-8">
+            <form class="login modal-content p-md-5 p-3" method="post">
+              <div class="chat-top d-flex justify-content-between mb-5">
+                <div class="interlocutor d-flex">
+                  <img src="img/user.svg" class="interlocutor-icon" alt="audio">
+                  <p class="interlocutor-name">Interlocutor’s name</p>
+                </div>
+                <div class="quit-chat d-flex">
+                  <a class="next d-flex" data-toggle="modal" data-target="#nextModal">
+                    <button type="submit" class="btn next-btn d-inline-flex col-md-3 justify-content-center">Next</button>
+                    <div class="arrow"></div>
+                  </a>
+                  <a class="close-chat" data-toggle="modal" data-target="#crossModal"></a>
+                </div>
+              </div>
+
+              <div><!--Messssssssages--></div>
+
+              <div class="chat-bottom d-flex justify-content-around mt-5">
+                <div class="type-message col-md-9">
+                  <input class="login-name message col-9" type="text" name="message" id="form-login" placeholder="Message text" required>
+                  <img src="img/audio.svg" alt="audio">
+                  <img src="img/file.svg" alt="files">
+                </div>
+                <button type="submit" class="btn send-btn d-inline-flex col-md-2 justify-content-center">Send</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="container">
+        <div class="authors d-flex justify-content-around flex-column flex-md-row">
+          <h2>Group 4</h2>
+          <p>Chuyen Nguyen</p>
+          <p>Gowtham Ashok</p>
+          <p>Ilyas Sabirzyanov</p>
+          <p>Evgeniia Kazakova</p>
+      </div>
+    </footer>
+
+    <section class="modal fade next-modal" id="nextModal" tabindex="-1" role="dialog" aria-labelledby="nextModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-window">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Do you really want to change your conversation partner?</p>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn modal-btn" data-dismiss="modal">Yes</button>
+            <button type="button" class="btn modal-btn" class="close" data-dismiss="modal" aria-label="Close">No</button>
+          </div>
+        </div>      
+      </div>
+    </section>
+
+    <section class="modal fade cross-modal" id="crossModal" tabindex="-1" role="dialog" aria-labelledby="crossModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content modal-window">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Do you really want to quit the chat?</p>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn modal-btn" data-dismiss="modal">Yes</button>
+              <button type="button" class="btn modal-btn" class="close" data-dismiss="modal" aria-label="Close">No</button>
+            </div>
+          </div>      
+        </div>
+      </section>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  </body>
+</html>
