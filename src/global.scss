@@ -1,7 +1,11 @@
 :global {
+  html {
+    height: 100%;
+  }
+
   body {
     background: -webkit-linear-gradient(45deg, rgba(0, 55, 104, 1), #dc3545 100%);
-    height: 100vh;
+    height: 100%;
   }
 
   a {
@@ -104,6 +108,13 @@
     width: 20px;
     height: 25px;
     cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+  }
+
+  .quit-chat {
+    position: relative;
   }
 
   .close-chat:hover {
@@ -175,6 +186,7 @@
   .chat_content {
     width: 100%;
     max-height: 200px;
+    min-height: 200px;
     color: black;
     background-color: white;
     border-radius: 5px;

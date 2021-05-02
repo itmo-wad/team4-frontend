@@ -1,10 +1,11 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { messagesActions } from '../../store/actions';
 import useSocket from '../../socket/useSocket';
 
 const Chat: FC = () => {
   const socket = useSocket();
+  const divRef: any = useRef();
   const messages: any = useSelector<any>((state) => state.messages.items);
   const dispatch = useDispatch();
 
@@ -28,8 +29,15 @@ const Chat: FC = () => {
     });
   }, [dispatch, socket]);
 
+  useEffect(() => {
+    divRef.current.scrollTo({
+      top: divRef.current.scrollHeight,
+      behavior: 'auto'
+    });
+  }, [messages])
+
   return (
-    <div className="chat_content">
+    <div ref={divRef} className="chat_content">
       {
         messages.map(
           (message: any) => (

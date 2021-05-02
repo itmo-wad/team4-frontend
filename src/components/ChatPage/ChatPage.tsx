@@ -20,7 +20,7 @@ const ChatPage: FC = () => {
     <main>
       <div className="container">
         <section className="row d-flex justify-content-center line">
-          <div className="col-11 col-md-8">
+          <div style={{height: '100%'}} className="col-11 col-md-8">
             <div
               className="login modal-content p-md-5 p-3"
             >
