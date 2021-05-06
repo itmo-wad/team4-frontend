@@ -14,7 +14,7 @@ module.exports = merge(base, {
     historyApiFallback: true,
     hot: true,
     open: true,
-    port: 3001,
+    port: 3002,
     clientLogLevel: 'silent'
   },
   module: {
@@ -29,6 +29,7 @@ module.exports = merge(base, {
               importLoaders: 1,
               modules: {
                 localIdentName: '[local]___[hash:base64:5]',
+                mode: "global",
               },
             },
           },

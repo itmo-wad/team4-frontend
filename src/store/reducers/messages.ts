@@ -1,5 +1,6 @@
 const initialState = {
   items: [],
+  isInRoom: false,
 };
 
 export default (state = initialState, { type, payload }: any) => {
@@ -17,6 +18,12 @@ export default (state = initialState, { type, payload }: any) => {
       return {
         ...state,
         items: [],
+      };
+    }
+    case 'MESSAGE:IS_IN_ROOM': {
+      return {
+        ...state,
+        isInRoom: payload,
       };
     }
     default:

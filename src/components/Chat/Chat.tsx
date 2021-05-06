@@ -1,30 +1,51 @@
-import React, { FC, useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { messagesActions } from '../../store/actions';
 import useSocket from '../../socket/useSocket';
+import 'react-toastify/dist/ReactToastify.css';
+
+interface State {
+  messages: {
+    items: [{
+      name: string,
+      content: string,
+    }],
+    isInRoom: boolean,
+  }
+}
 
 const Chat: FC = () => {
-  const socket = useSocket();
-  const divRef: any = useRef();
-  const messages: any = useSelector<any>((state) => state.messages.items);
+  const socket: any = useSocket();
+  const divRef: any = useRef(null);
+  const messages = useSelector((state: State) => state.messages.items);
+  const isInRoom = useSelector((state: State) => state.messages.isInRoom);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const addChatMessage = (name: string, content: string) => {
-      dispatch(messagesActions.addMessage({ name, content }));
+    const addChatMessage = (name: string, content: string, id: string) => {
+      dispatch(messagesActions.addMessage({ name, content, id }));
     };
+    socket.on('connect', () => {
+      console.log('Connected!');
+    });
+
+    socket.on('join room', (data: any) => {
+      socket.emit('join', data);
+    });
 
     socket.on('user disconnected', () => {
-      addChatMessage('Noti', 'User disconnected');
+      toast.warn('User disconnected');
     });
 
     socket.on('joined room', () => {
-      addChatMessage('Noti', 'Joined room!');
+      toast.success( 'Joined room!');
+      dispatch(messagesActions.setIsInRoom(true));
     });
 
-    socket.on('message', (msg) => {
+    socket.on('message', (msg: any) => {
       if (typeof msg !== 'undefined') {
-        addChatMessage(msg.user_name, msg.message);
+        addChatMessage(msg.user_name, msg.message, msg.sid);
       }
     });
   }, [dispatch, socket]);
@@ -37,15 +58,18 @@ const Chat: FC = () => {
   }, [messages])
 
   return (
-    <div ref={divRef} className="chat_content">
-      {
-        messages.map(
-          (message: any) => (
-            <div key={message.content + message.name}> {message.name}: {message.content} </div>
-          ),
-        )
-      }
-    </div>
+    <>
+      <div ref={divRef} className="chat_content">
+        {!isInRoom ? 'Searching for a user...' : ''}
+        {
+          messages.map(
+            (message: any, index: number) => (
+              <div key={message.id + index}>{message.name}: {message.content} </div>
+            ),
+          )
+        }
+      </div>
+    </>
   );
 };
 

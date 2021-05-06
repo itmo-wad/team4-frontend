@@ -2,9 +2,10 @@ import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSocket } from '../../socket';
 import { messagesActions } from '../../store/actions';
+import { toast } from 'react-toastify'
 
 const ChangeModal: FC = () => {
-  const socket = useSocket();
+  const socket: any = useSocket();
   const dispatch = useDispatch();
   const nextChat = () => {
     socket.emit('next', {});
@@ -42,7 +43,9 @@ const ChangeModal: FC = () => {
               className="btn modal-btn"
               data-dismiss="modal"
               onClick={() => {
+                toast.dismiss();
                 dispatch(messagesActions.deleteMessages());
+                dispatch(messagesActions.setIsInRoom(false));
                 nextChat();
               }}
             >

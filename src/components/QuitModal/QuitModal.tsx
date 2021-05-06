@@ -1,16 +1,14 @@
 import React, { FC } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { useSocket } from '../../socket';
 import { messagesActions } from '../../store/actions';
 
 const QuitModal: FC = () => {
   const history = useHistory();
-  const socket = useSocket();
+  const socket: any = useSocket();
   const dispatch = useDispatch();
-  const nextChat = () => {
-    socket.emit('next', {});
-  };
 
   return (
     <section
@@ -45,9 +43,11 @@ const QuitModal: FC = () => {
               data-dismiss="modal"
               onClick={() => {
                 localStorage.removeItem('name');
+                toast.dismiss();
                 history.push('/');
                 dispatch(messagesActions.deleteMessages());
-                nextChat();
+                dispatch(messagesActions.setIsInRoom(false));
+                socket.disconnect();
               }}
             >
               Yes

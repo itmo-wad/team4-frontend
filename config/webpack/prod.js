@@ -9,7 +9,7 @@ module.exports = merge(base, {
   mode: 'production',
   entry: {
     index: {
-      import: `${paths.src}/index.ts`,
+      import: `${paths.src}/index.tsx`,
       dependOn: ['react', 'helpers']
     },
     react: ['react', 'react-dom'],
@@ -34,6 +34,7 @@ module.exports = merge(base, {
               importLoaders: 1,
               modules: {
                 localIdentName: '[hash:base64]',
+                mode: "global",
               },
             },
           },

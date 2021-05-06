@@ -3,7 +3,7 @@ import useSocket from '../../socket/useSocket';
 
 const ChatBottom: FC = () => {
   const inputRef: any = useRef(null);
-  const socket = useSocket();
+  const socket: any = useSocket();
 
   return (
     <form
